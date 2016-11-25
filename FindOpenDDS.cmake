@@ -62,9 +62,9 @@ function(FindOpenDDS)
 		set(_opendds_flags "")
 		list(APPEND _opendds_flags "-Lspcpp")
 		list(APPEND _opendds_flags "-I$ENV{DDS_ROOT}")
-		list(APPEND _tao_flags "-I.")
-		list(APPEND _tao_flags "-Sa")
-		list(APPEND _tao_flags "-St")
+		list(APPEND _opendds_flags "-I.")
+		list(APPEND _opendds_flags "-Sa")
+		list(APPEND _opendds_flags "-St")
 
 
 		set(OpenDDS_FLAGS "${_opendds_flags}" PARENT_SCOPE)
