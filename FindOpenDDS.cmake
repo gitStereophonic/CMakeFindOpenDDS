@@ -105,7 +105,8 @@ function(DDSCompileIdl IDL_FILENAMES GENERATED_SRC_FILES GENERATED_HDR_FILES)
 
 	set(RES_CPP "")
 	set(RES_HPP "")
-	set(IDLS_GENERATED_DIR "${CMAKE_CURRENT_BINARY_DIR}/bin/idl_generated")
+	set(IDLS_GENERATED_DIR "${CMAKE_CURRENT_BINARY_DIR}/bin/idl_generated"
+		CACHE INTERNAL "" FORCE)
 	foreach(filename ${IDL_FILENAMES})
 		# Split filepath
 		get_filename_component(filename_n ${filename} NAME)
@@ -144,7 +145,8 @@ function(DDSCompileIdl IDL_FILENAMES GENERATED_SRC_FILES GENERATED_HDR_FILES)
 		add_custom_command(
 			OUTPUT ${IDL_C_CPP} ${IDL_C_H} ${IDL_C_INL} ${IDL_S_CPP} ${IDL_S_H}
 			DEPENDS ${WORKING_FILE}
-			COMMAND ${OpenDDS_TAO_IDL_EXECUTABLE} ${WORKING_FILE}
+			COMMAND ${OpenDDS_TAO_IDL_EXECUTABLE}
+			ARGS ${OpenDDS_TAO_FLAGS} ${WORKING_FILE}
 			WORKING_DIRECTORY ${IDLS_GENERATED_DIR}
 			COMMENT "Compiling first idl template(s)"
 		)
